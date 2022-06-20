@@ -1,0 +1,25 @@
+{%extends 'registration/base.html'%} {%load bootstrap5%} {%block content%}
+<div class="row">
+  <div class="col-md-4">
+    <img src="./media/login.jpg"/>
+  </div>
+  <div class="col-md-4">
+    <div class="container">
+      {%if form.errors%}
+      <p>Kindly fill in the correct details</p>
+      {%endif%}
+      <form class='loginfrm' action="/accounts/login/" method="post">
+        <h5 class='formtitle'>LOGIN</h5>
+        
+        {%csrf_token%} {%bootstrap_form form%}
+        <input type="submit" value="Login" class="allbtn"/>
+         <p class="ask">Already have an account?
+            <a  class='sign'  href='/accounts/register'>Sign Up<a/>
+          </p>
+      </form>
+    </div>
+    <input type='hidden' name="next" value="" class= 'allbtn'>
+ </div>
+  <div class="col-md-4"></div>
+</div>
+{%endblock%}
