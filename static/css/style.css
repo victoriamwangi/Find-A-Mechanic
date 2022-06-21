@@ -48,8 +48,13 @@
     width: 100%;
     height: 3vw;
     color: white;
+    border-radius: 5px;
 }
 
 .ask .sign {
     color: #102f3e;
+}
+
+.loginfrm {
+    padding-top: 5vw;
 }
