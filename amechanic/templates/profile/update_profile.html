@@ -1,0 +1,26 @@
+{%extends 'base.html'%}{%load bootstrap5%}{%block content%}
+<div class="row">
+  <div class="col-lg-3"></div>
+  <div class="col-lg-6">
+    <div class="container">
+      <form
+        method="post"
+        class="update"
+        enctype="multipart/form-data"
+        novalidate
+      >
+        <h5 class="formtitle">UPDATE PROFILE</h5>
+
+        {%csrf_token%} {%bootstrap_form profileform %}
+        <input
+          type="submit"
+          class="btn btn-success btn-lg allbtn submitprof"
+          value="Post"
+        />
+      </form>
+    </div>
+  </div>
+  <div class="col-lg-3"></div>
+</div>
+
+{%endblock%}
