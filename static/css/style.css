@@ -1,3 +1,7 @@
+body {
+    background-color: #ddd;
+}
+
 .navbar {
     background-color: #102f3e !important;
 }
@@ -57,4 +61,24 @@
 
 .loginfrm {
     padding-top: 5vw;
+}
+
+.profdetail {
+    display: flex;
+    padding-top: 4vw;
+}
+
+.profimg {
+    width: 20vw !important;
+    height: 20vw;
+    margin-right: 2vw;
+}
+
+.texty p span {
+    color: #102f3e;
+}
+
+.updatebtn {
+    width: 10vw;
+    background-color: #102f3e;
 }
