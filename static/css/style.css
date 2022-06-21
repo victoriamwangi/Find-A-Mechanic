@@ -82,3 +82,19 @@ body {
     width: 10vw;
     background-color: #102f3e;
 }
+
+.update {
+    box-shadow: 1px 1px 5px grey;
+    padding-left: 4vw;
+    margin-top: 2vw;
+    padding-bottom: 2vw;
+}
+
+.update input,
+.form-select {
+    width: 90%;
+}
+
+.update label {
+    color: #102f3e;
+}
