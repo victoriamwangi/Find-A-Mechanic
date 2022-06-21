@@ -1,3 +1,65 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
+# profile
+# posts
+# reviews
+#location
+class Location(models.Model):
+    name = models.CharField(max_length= 100)
+    
+    def save_location(self):
+        return self.save()
+    def delete_location(self):
+        return self.delete()
+    
+    def __str__(self):
+        return self.name
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete= models.CASCADE, related_name= 'profile')
+    username= models.CharField(max_length= 100, blank=True)
+    email = models.EmailField(max_length=100, blank=True)
+    prof_image = models.ImageField(default='default.png', upload_to = 'profiles/')
+    bio = models.CharField(max_length= 30, null=True, blank=True)
+    first_name = models.CharField(max_length=40, null=True)
+    second_name = models.CharField(max_length=40, null=True)
+    location = models.OneToOneField(Location, blank=True)
+    
+    @receiver(post_save, sender=User,) 
+    def create_profile(sender, instance, created, **kwargs, ):
+        if created:
+            Profile.objects.create(user=instance)
+
+
+    @receiver(post_save, sender=User)
+    def save_profile(sender, instance, **kwargs):
+        instance.profile.save()
+  
+    
+    def __str__(self):
+        return f'{self.user.username} Profile'
+    
+
+    
+    
+class Post(models.Model):
+    user= models.ForeignKey(User, on_delete = models.CASCADE, null=True, related_name="posts")
+    description = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='posts/')
+    pub_date= models.DateTimeField(auto_now_add=True)
+    
+    def save_post(self):
+        return self.save()
+    def delete_post(self):
+        return self.delete()
+    @classmethod
+    def get_posts(self):
+        all_posts = Post.objects.all()
+        return all_posts
+
+    
+    def __str__(self):
+        return self.description
