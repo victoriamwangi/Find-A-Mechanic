@@ -1,3 +1,11 @@
+.navbar {
+    background-color: #102f3e !important;
+}
+
+.nav-link {
+    color: white !important;
+}
+
 .profimg {
     width: 20vw;
     height: 10vw;
