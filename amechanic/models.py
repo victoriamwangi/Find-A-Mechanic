@@ -26,7 +26,7 @@ class Profile(models.Model):
     bio = models.CharField(max_length= 30, null=True, blank=True)
     first_name = models.CharField(max_length=40, null=True)
     second_name = models.CharField(max_length=40, null=True)
-    location = models.OneToOneField(Location, blank=True)
+    location = models.OneToOneField(Location, on_delete= models.CASCADE ,blank=True, null=True,)
     
     @receiver(post_save, sender=User,) 
     def create_profile(sender, instance, created, **kwargs, ):
