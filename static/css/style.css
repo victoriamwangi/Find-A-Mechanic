@@ -1,3 +1,100 @@
-.loginfrm{
-    
+body {
+    background-color: #ddd;
+}
+
+.navbar {
+    background-color: #102f3e !important;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.profimg {
+    width: 20vw;
+    height: 10vw;
+    object-fit: cover;
+}
+
+.reg {
+    background-color: #ddd;
+    height: 100vh !important;
+}
+
+.mb-3 .text-muted {
+    display: none;
+}
+
+.regcontainer {
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px grey;
+    margin-top: 3vw;
+}
+
+.regcontainer form {
+    height: 80vh !important;
+}
+
+.regImg {
+    object-fit: cover;
+    width: 30vw !important;
+    height: 80vh !important;
+}
+
+.registerfrm label {
+    color: #102f3e;
+}
+
+.allbtn {
+    background-color: #102f3e;
+    width: 100%;
+    height: 3vw;
+    color: white;
+    border-radius: 5px;
+}
+
+.ask .sign {
+    color: #102f3e;
+}
+
+.loginfrm {
+    padding-top: 5vw;
+}
+
+.profdetail {
+    display: flex;
+    padding-top: 4vw;
+}
+
+.profimg {
+    width: 20vw !important;
+    height: 20vw;
+    margin-right: 2vw;
+}
+
+.texty p span {
+    color: #102f3e;
+}
+
+.updatebtn {
+    width: 10vw;
+    background-color: #102f3e;
+}
+
+.update {
+    box-shadow: 1px 1px 5px grey;
+    padding-left: 4vw;
+    margin-top: 2vw;
+    padding-bottom: 2vw;
+}
+
+.update input,
+.form-select {
+    width: 90%;
+}
+
+.update label {
+    color: #102f3e;
 }
