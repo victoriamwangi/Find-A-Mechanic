@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('profile/<username>/settings', views.update_profile, name='update_profile'),
     path('profile/<username>', views.profile, name='profile'),
+    path('profiles/<username>/profile/', views.show_profile, name='show_profile'),  
     
     
 ]
