@@ -79,6 +79,17 @@ def update_profile(request, username):
     }
     return render(request, "profile/update_profile.html", context)
  
+
+
+def show_profile(request, username):    
+    user = get_object_or_404(User, username=username)
+    context = {
+        "user": user, 
+    }
+
+    
+    return render(request, 'profile/user_profile.html', context)
+
 def contactView(request):
     if request.method == 'GET':
         form = ContactForm()
