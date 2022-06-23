@@ -1,11 +1,30 @@
  .this {
- background: url("/static/images/contactsbg.jpg");
+ background: url("/static/images/bg2.jpg");
  height: 650px;
  background-size: cover;
  padding: 100px 0 0 0;
  font-size: small;
- font-weight: bold;
 }
 .contactsform {
     margin-left: 20px;
+}
+
+.map_sec {
+    padding: 50px 0px;
+}
+
+.map_inner h4,
+.map_inner p {
+    color: #000;
+    text-align: center
+}
+
+.map_inner p {
+    font-size: 13px;
+}
+
+.map_bind {
+    margin-top: 50px;
+    border-radius: 30px;
+    overflow: hidden;
 }

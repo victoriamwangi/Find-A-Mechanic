@@ -41,28 +41,47 @@ class Profile(models.Model):
     
     def __str__(self):
         return f'{self.user.username} Profile'
-    
 
     
-    
+# profile-mech
 class Post(models.Model):
-    user= models.ForeignKey(User, on_delete = models.CASCADE, null=True, related_name="posts")
+    user= models.ForeignKey(Profile, on_delete = models.CASCADE, null=True, related_name="posts")
+    name = models.CharField(max_length=50)
+    carmodel = models.CharField(max_length=50)
     description = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='posts/')
+    location = models.CharField(max_length=250)
+    image = models.ImageField(upload_to='media/posts/')
+    contact= models.PositiveIntegerField(default="0")
     pub_date= models.DateTimeField(auto_now_add=True)
     
     def save_post(self):
         return self.save()
+
     def delete_post(self):
         return self.delete()
+
     @classmethod
     def get_posts(self):
         all_posts = Post.objects.all()
         return all_posts
-
-    
+ 
     def __str__(self):
         return self.description
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='comments')
+    name = models.CharField(max_length=80)
+    email = models.EmailField()
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['created_on']
+
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.body, self.name)
 
 
 class Rating(models.Model):
