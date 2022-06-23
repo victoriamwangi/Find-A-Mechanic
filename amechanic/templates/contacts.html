@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/contacts.css' %}">
+<div class="container">
+    <br><br><br><br>
+    <div class="row this card">
+
+            <div class="col-md-5">
+                <h3> CONTACT US </h3>
+
+                <div class="d-flex adress">
+                    <img src="{% static 'images/location.png' %}" alt="adress" class="bg-white" width="50px">
+                    <h2 class="text-white font-size-small">Nairobi, mechstreet, 10001</h2>
+                </div><br><br><br><br>
+
+                <div class="d-flex email">
+                    <img src="{% static 'images/email.png' %}" alt="email" class="bg-white"width="50px">
+                    <h2 class="text-white">findamech@gmail.com</h2>
+                </div><br><br><br><br>
+
+                <div class="d-flex contacts">
+                    <img src="{% static 'images/contact.png' %}" alt="contacts" class="bg-white"width="50px">
+                    <h2 class="text-white">020-254-254-1000</h2>
+                </div><br><br>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-6">
+                <form class='contactsform text-white' action="/accounts/login/" method="post">
+                    {%csrf_token%}
+                    {{ form.as_p }}
+                    <input type="submit" value="SEND MESSAGE" class="allbtn" />
+                </form>
+            </div>
+    </div>
+
+</div>
+{% endblock content%}
