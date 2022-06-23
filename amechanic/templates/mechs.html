@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+{% load static %}
+{% load bootstrap5 %}
+{% block content %}
+<div class="container">
+    <br><br><br><br>
+    <div class="d-flex ml-5 mr-5 justify-content-around container" style="margin-left:100px;">
+        <div class="btn1">
+            <a href="#" class="btn btn-md ml-3" style="background-color: #645C60;color: white;border-radius:25px 25px 25px 25px;padding-left:25px;padding-right:25px;">Thika</a>
+        </div>
+
+        <div class="btn1">
+            <a href="#" class="btn btn-md ml-3" style="background-color: #645C60;color: white;border-radius:25px 25px 25px 25px;padding-left:25px;padding-right:25px;">Kiambu</a>
+        </div>
+
+        <div class="btn1">
+            <a href="#" class="btn btn-md ml-3" style="background-color: #645C60;color: white;border-radius:25px 25px 25px 25px;padding-left:25px;padding-right:25px;">Ruiru</a>
+        </div>
+
+        <div class="btn1">
+            <a href="#" class="btn btn-md ml-3" style="background-color: #645C60;color: white;border-radius:25px 25px 25px 25px;padding-left:25px;padding-right:25px;">Uthiru</a>
+        </div>
+        <br><br><br><br>
+    </div>
+
+    <div class="row row-cols-3 pl-3 pr-3">
+        {% for post in posts %}
+    <div class="card ml-5 mr-5 mb-5 justify-content-around" style="width: 28rem;">
+        <img src="{{post.image.url}}" class="card-img-top" alt="..."width="250px" height="250px">
+        <div class="card-body"> 
+            <h4 class="card-title text-center" style="margin-top:-15px;font-weight: 300px;">{{post.carmodel}}</h4>
+            <i>{{post.location}}</i><br>
+            <hr>
+            <div class="d-flex col-md-4 mt-2 mb-2">
+                <img class="rounded-circle" src="https://source.unsplash.com/1600x900/?user,profile" width="40px" height="40px"></a>
+                <a href="{% url 'viewprofile' post.id %}">
+                    <p class="btn btn-md ml-3" style="padding-left:15px;padding-right:15px; background-color: #102f3e;color: white;border-radius:25px 25px 25px 25px;">View Profile</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+
+     <br><br><br><br> <br><br><br><br>
+</div>
+{% endblock %}

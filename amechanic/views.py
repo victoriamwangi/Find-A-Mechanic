@@ -13,57 +13,56 @@ def home(request):
 def Aboutus(request):
     return render (request, 'aboutus.html')
 
-# MECH'S PROFILE
+# User's PROFILE
 @login_required(login_url= '/accounts/login/')
 def profile(request, username):
-    
     return render (request, 'profile/profile.html')
 
-# VIEW A MECHANIC'S PROFILE
-@login_required(login_url= '/accounts/login/')
-def view_profile(request, username):
-    user = get_object_or_404(User, username=username)
-    rate = Rating.objects.filter(user = user)
-    ratings = Rating.objects.all()
-    rating_status = None    
-    if ratings is None:
-        rating_status = False
-    else:
-        rating_status = True
+@login_required(login_url='/accounts/login/')
+def view_post(request):
+    current_user = request.user
     if request.method == 'POST':
-        form = RatingsForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            rate = form.save(commit=False)
-            rate.user = request.user
-            rate.profile = profile
-            rate.save()
-            profile_ratings = Rating.objects.filter(profile=profile)
+            post = form.save(commit=False)
+            post.owner = current_user
+            post.save()
+        return redirect('mechs')
 
-            quality_of_work_ratings = [d.quality_of_work for d in profile_ratings]
-            quality_of_work_average = sum(quality_of_work_ratings) / len(quality_of_work_ratings)
-
-            punctuality_ratings = [us.punctuality for us in profile_ratings]
-            punctuality_average = sum(punctuality_ratings) / len(punctuality_ratings)
-
-            customer_relations_ratings = [customer_relations.customer_relations for customer_relations in profile_ratings]
-            customer_relations_average = sum(customer_relations_ratings) / len(customer_relations_ratings)
-
-            score = (quality_of_work_average + punctuality_average + customer_relations_average) / 3
-            print(score)
-            rate.design_average = round(quality_of_work_average, 2)
-            rate.usability_average = round(punctuality_average, 2)
-            rate.content_average = round(customer_relations_average, 2)
-            rate.score = round(score, 2)
-            rate.save()
-            return HttpResponseRedirect(request.path_info)
     else:
-        form = RatingsForm()
-    params = {
-        'profile': profile,
-        'rating_form': form,
-        'rating_status': rating_status
-    }
-    return render(request, 'profile/viewprofile.html', params)
+        form = PostForm()
+    return render(request, 'mechposts.html', {"form": form})
+
+
+
+@login_required(login_url='/accounts/login/')
+def mechs(request):
+    posts = Post.objects.all()
+    return render(request, 'mechs.html',{'posts':posts})
+
+def locals(request):
+    locals = Location.objects.all()
+    return render(request, 'locals.html', {"locals":locals})
+# VIEW A MECHANIC'S PROFILE-postdetails
+@login_required(login_url= '/accounts/login/')
+def view_profile(request, id):
+    post = Post.objects.get(pk = id)
+    comments = post.comments.filter(active=True)
+    new_comment = None
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+
+            new_comment = comment_form.save(commit=False)    # Create Comment object but don't save to database yet
+            new_comment.post = post   # Assign the current post to the comment
+            new_comment.save()       # Save the comment to the database
+    else:
+        comment_form = CommentForm()
+
+    return render(request, 'viewprofile.html',{'post': post,
+                                           'comments': comments,
+                                           'new_comment': new_comment,
+                                           'comment_form': comment_form})   
     
 # UPDATE MECH'S PROFILE
 @login_required(login_url= '/accounts/login/')
@@ -111,3 +110,14 @@ def contactView(request):
 
 def successView(request):
     return HttpResponse('Success! Thank you for your message.')
+
+def location_search(request):
+    if 'location' in request.GET and request.GET["location"]:
+        search_term = request.GET.get('location')
+        searched_location = Location.search_location(search_term)
+        message = f'{search_term}'
+        return render(request, 'search.html', {"message": message, 'locations':searched_location})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html', {'message': message})
+    

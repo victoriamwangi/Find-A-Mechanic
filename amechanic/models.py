@@ -9,15 +9,24 @@ from django.dispatch import receiver
 # reviews
 #location
 class Location(models.Model):
-    name = models.CharField(max_length= 100)
+    location_name = models.CharField(max_length= 100)
     
     def save_location(self):
         return self.save()
     def delete_location(self):
         return self.delete()
+    @classmethod
+    def locations(self):
+        locals = Location.objects.all()
+        return locals
+    
+    @classmethod
+    def search_location(cls, search_term):
+        location = cls.objects.filter(location_name__icontains = search_term)
+        return location 
     
     def __str__(self):
-        return self.name
+        return self.location_name
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete= models.CASCADE, related_name= 'profile')
     username= models.CharField(max_length= 100, blank=True)
@@ -26,7 +35,7 @@ class Profile(models.Model):
     bio = models.CharField(max_length= 30, null=True, blank=True)
     first_name = models.CharField(max_length=40, null=True)
     second_name = models.CharField(max_length=40, null=True)
-    location = models.OneToOneField(Location, on_delete= models.CASCADE ,blank=True, null=True,)
+    location = models.ManyToManyField(Location)
     
     @receiver(post_save, sender=User,) 
     def create_profile(sender, instance, created, **kwargs, ):
@@ -41,28 +50,47 @@ class Profile(models.Model):
     
     def __str__(self):
         return f'{self.user.username} Profile'
-    
 
     
-    
+# profile-mech
 class Post(models.Model):
-    user= models.ForeignKey(User, on_delete = models.CASCADE, null=True, related_name="posts")
+    user= models.ForeignKey(Profile, on_delete = models.CASCADE, null=True, related_name="posts")
+    name = models.CharField(max_length=50)
+    carmodel = models.CharField(max_length=50)
     description = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='posts/')
+    location = models.CharField(max_length=250)
+    image = models.ImageField(upload_to='media/posts/')
+    contact= models.PositiveIntegerField(default="0")
     pub_date= models.DateTimeField(auto_now_add=True)
     
     def save_post(self):
         return self.save()
+
     def delete_post(self):
         return self.delete()
+
     @classmethod
     def get_posts(self):
         all_posts = Post.objects.all()
         return all_posts
-
-    
+ 
     def __str__(self):
         return self.description
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name='comments')
+    name = models.CharField(max_length=80)
+    email = models.EmailField()
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['created_on']
+
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.body, self.name)
 
 
 class Rating(models.Model):

@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+{%block title%}Mechanics-Posts{%endblock title%}
+{% load static %}
+{% load bootstrap5 %}
+{% block content%}
+<br><br><br>
+<div class="row mt-5">
+    <!-- Empty div -->
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6 pt-2 ">
+        <h2>Are you a mech, Kindly fill tis form to showcase your profile.</h2>
+        <form action="{%url 'mechpost'%}" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+            {% bootstrap_form form%}
+            <input type="submit" class="btn btn-info btn-sm font-weight-bold" value="SUBMIT">
+        </form>
+        <br><br><br><br><br><br><br><br><br>
+    </div>
+    <div class="col-lg-3"></div>
+</div>
+{% endblock %}

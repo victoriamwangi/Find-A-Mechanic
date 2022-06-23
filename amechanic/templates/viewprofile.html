@@ -1,0 +1,58 @@
+{%extends 'base.html'%}
+{% load ratings %}
+{%load bootstrap5%}
+{%block content%}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/viewprofile.css' %}">
+<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+
+
+<div class="container">
+    <br><br><br>
+    <div class=" card flex-row">
+        <img class="card-img-left example-card-img-responsive" src="{{post.image.url}}" width="600px" height="600px" />
+        <div class="card-body">
+            <h3 class="card-title" style="text-decoration: underline;">{{post.name}}</h3>
+            <strong> I am {{post.carmodel}} professional mechanic.</strong><br>
+            <small class="card-text">{{post.description}}.</small><br><br>
+            <i>{{post.location}}</i><br><br>
+            <a href="#" class="btn btn-md"
+                style="background-color: #645C60;color: white;border-radius:25px 25px 25px 25px;padding-left:25px;padding-right:25px;">{{post.contact}}</a>
+
+            <div class="card-body">
+                <!-- comments -->
+                {% for comment in comments %}
+                <div class="comments" style="padding: 10px;">
+                    <p class="font-weight-bold">
+                        {{ comment.name }}
+                        <span class=" text-muted font-weight-normal">
+                            {{ comment.created_on }}
+                        </span>
+                    </p>
+                    {{ comment.body | linebreaks }}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="card-body">
+                {% if new_comment %}
+                {% for comment in comments %}
+                <div class="alert alert-success" role="alert">
+                    Your comment is awaiting moderation
+                </div>
+                {% endfor %}
+                {% else %}
+                <p>{{ comments.count }} comments</p>
+                <h3 style="text-decoration: underline;">Leave a comment</h3>
+                <form method="post" style="margin-top: 1.3em;">
+                    {{ comment_form.as_p }}
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div> 
+</div>
+<br><br><br><br><br><br><br><br><br>
+{% endblock content %}
