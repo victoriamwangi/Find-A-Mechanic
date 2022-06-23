@@ -16,11 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.contrib.auth import views as auth_views
+from amechanic.views import *
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('amechanic.urls')),
     re_path(r'^accounts/', include('registration.backends.simple.urls')),
-    re_path(r'^logout/$', auth_views.logout_then_login), 
+    re_path(r'^logout/$', auth_views.logout_then_login),
+    # MULTIUSER TEST
+    path('accounts/signup/', SignUpView.as_view(), name='signup'), 
+    path('accounts/signup/student/',views.MechanicSignUpView.as_view(), name='mechanic_signup'),
+    path('accounts/signup/teacher/', CarownerSignUpView.as_view(), name='carowner_signup'),
 ]

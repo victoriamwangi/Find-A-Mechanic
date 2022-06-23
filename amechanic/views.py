@@ -111,3 +111,44 @@ def contactView(request):
 
 def successView(request):
     return HttpResponse('Success! Thank you for your message.')
+
+# MULTIUSER TEST 
+from django.contrib.auth import login
+from django.views.generic import CreateView
+
+from .forms import MechSignUpForm
+from .models import Mechanic
+from .decorators import *
+# from .models import Quiz
+
+class MechanicSignUpView(CreateView):
+    model = User
+    form_class = MechSignUpForm
+    template_name = 'registration/signup_form.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'mechanic'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('mech_view')  #create this view
+
+# @login_required
+# @carowner_required 
+class OwnerSignUpView(CreateView):
+    model = User
+    form_class = OwnerSignUpForm
+    template_name = 'registration/signup_form.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'carowner'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('carowner_view')    
+    
+    

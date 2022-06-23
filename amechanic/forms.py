@@ -25,3 +25,44 @@ class ContactForm(forms.Form):
     Subject = forms.CharField(required=True)
     Message = forms.CharField(widget=forms.Textarea, required=True)
     
+    
+    
+# MULTIUSER TEST 
+from django.contrib.auth.forms import UserCreationForm
+from django.db import transaction
+
+from .models import Mechanic, User
+
+from django.contrib.auth.forms import UserCreationForm
+from .models import User
+
+class MechSignUpForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = User
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.is_mechanic = True
+        if commit:
+            user.save()
+        return user
+    
+class OwnerSignUpForm(UserCreationForm):
+    interests = forms.ModelMultipleChoiceField(
+        queryset=CarModels.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=True
+    )
+
+    class Meta(UserCreationForm.Meta):
+        model = User
+
+    @transaction.atomic
+    def save(self):
+        user = super().save(commit=False)
+        user.is_student = True
+        user.save()
+        car_owner = CarModels.objects.create(user=user)
+        car_owner.modelcar.add(*self.cleaned_data.get('models'))
+        return user
+    # add modelcar

@@ -13,8 +13,10 @@ urlpatterns = [
     path('viewprofile/<username>', views.view_profile, name='viewprofile'),    
     path('contact/', contactView, name='contact'),
     path('success/', successView, name='success'),
-
     path('aboutus/', views.Aboutus, name='aboutus'),
+    
+    
+    
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
