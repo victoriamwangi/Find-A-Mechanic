@@ -3,30 +3,31 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/contacts.css' %}">
 <div class="container">
-    <br><br><br><br>
-    <div class="row this card">
+    <br><br>
+    <div class="row this">
+        <h3 class="text-white text-center" style="font-weight:800;"> CONTACT US </h3>
+            <div class="col-md-4">
 
-            <div class="col-md-5">
-                <h3> CONTACT US </h3>
-
-                <div class="d-flex adress">
-                    <img src="{% static 'images/location.png' %}" alt="adress" class="bg-white" width="50px">
-                    <h2 class="text-white font-size-small">Nairobi, mechstreet, 10001</h2>
+                <div class="d-flex address">
+                    <img src="{% static 'images/location.png' %}" alt="address"  class="ml-5 bg-white" width="40px"height="40px">
+                    <h5 class="text-white font-size-small ml-5">Nairobi, mechstreet, 10001</h5>
                 </div><br><br><br><br>
 
                 <div class="d-flex email">
-                    <img src="{% static 'images/email.png' %}" alt="email" class="bg-white"width="50px">
-                    <h2 class="text-white">findamech@gmail.com</h2>
+                    <img src="{% static 'images/email.png' %}" alt="email" class="ml-5 bg-white" width="45px">
+                    <h5 class="text-white font-size-small ml-5">findamech@gmail.com</h5>
                 </div><br><br><br><br>
 
                 <div class="d-flex contacts">
-                    <img src="{% static 'images/contact.png' %}" alt="contacts" class="bg-white"width="50px">
-                    <h2 class="text-white">020-254-254-1000</h2>
+                    <img src="{% static 'images/phone.png' %}" alt="contacts" class="ml-5 bg-white"width="45px">
+                    <h5 class="text-white font-size-small ml-5">020-254-254-1000</h5>
                 </div><br><br>
             </div>
+
             <div class="col-md-1"></div>
+
             <div class="col-md-6">
-                <form class='contactsform text-white' action="/accounts/login/" method="post">
+                <form class='contactsform text-white' action="/accounts/login/" method="post" style="margin-left:25%;">
                     {%csrf_token%}
                     {{ form.as_p }}
                     <input type="submit" value="SEND MESSAGE" class="allbtn" />
@@ -34,5 +35,26 @@
             </div>
     </div>
 
+    <section class="map_sec">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <div class="map_inner">
+                        <h4>Find Us on Google Maps</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore quo beatae quasi assumenda,
+                            expedita aliquam minima tenetur maiores neque incidunt repellat aut voluptas hic dolorem sequi
+                            ab porro, quia error.</p>
+                        <div class="map_bind">
+                            <iframe
+                                src="https://maps.google.com/maps/ms?ie=UTF8&hl=en&msa=0&msid=104533783642869064279.0004817443c61f0104ebf&ll=-1.289733,36.807053&spn=0.008581,0.010707&z=16&iwloc=0004817447742f770a649&output=embed"
+                                width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""
+                                aria-hidden="false" tabindex="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br><br><br><br>
 </div>
 {% endblock content%}

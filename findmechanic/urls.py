@@ -23,4 +23,7 @@ urlpatterns = [
     path('', include('amechanic.urls')),
     re_path(r'^accounts/', include('registration.backends.simple.urls')),
     re_path(r'^logout/$', auth_views.logout_then_login), 
+
+    path('ratings/', include('star_ratings.urls', namespace='ratings')),
+
 ]

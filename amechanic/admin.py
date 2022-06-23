@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(Profile)
 admin.site.register(Location)
 admin.site.register(Post)
+admin.site.register(Comment)

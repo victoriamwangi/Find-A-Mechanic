@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'amechanic',
     'bootstrap5',
     'sendemail.apps.SendemailConfig',
+    'star_ratings',
 ]
+STAR_RATINGS_RANGE = 5
 
 DEFAULT_FROM_EMAIL = 'arinahgladoo@gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
