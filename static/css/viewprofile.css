@@ -1,0 +1,38 @@
+#rating-stars {
+    margin: 4px;
+}
+
+#rating-stars .stars {
+    display: inline-flex;
+}
+
+#rarate-input {
+    pointer-events: none;
+}
+
+#rating-stars .rate-input {
+    position: absolute;
+    left: -9999px;
+}
+
+#rating-stars label {
+    cursor: pointer;
+    padding: 1px;
+    font-size: 20pt;
+}
+
+#rating-stars .star-icon {
+    color: orange;
+}
+
+#rating-stars .rate-input:checked~.star-label .star-icon {
+    color: #999;
+}
+
+#rating-stars .stars:hover .star-label .star-icon {
+    color: orange;
+}
+
+#rating-stars .rate-input:hover~.star-label .star-icon {
+    color: #999;
+}
