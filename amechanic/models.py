@@ -8,6 +8,7 @@ from django.dispatch import receiver
 # posts
 # reviews
 #location
+
 class Location(models.Model):
     name = models.CharField(max_length= 100)
     
