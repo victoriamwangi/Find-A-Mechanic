@@ -18,3 +18,10 @@ class UpdateUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'email')
+
+class ContactForm(forms.Form):
+    Name = forms.CharField(required=True)
+    Email = forms.EmailField(required=True)
+    Subject = forms.CharField(required=True)
+    Message = forms.CharField(widget=forms.Textarea, required=True)
+    

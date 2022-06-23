@@ -2,18 +2,30 @@ from django.shortcuts import render, redirect,  get_object_or_404
 from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 # Create your views here.
 def home(request):
     return render (request, 'home.html')
 
+def Aboutus(request):
+    return render (request, 'aboutus.html')
 
+# MECH'S PROFILE
 @login_required(login_url= '/accounts/login/')
 def profile(request, username):
-    user = User.objects.get(username=username)
-    ratings = Rating.objects.filter(user=request.user, profile=user).first()
-    rating_status = None
+    
+    return render (request, 'profile/profile.html')
+
+# VIEW A MECHANIC'S PROFILE
+@login_required(login_url= '/accounts/login/')
+def view_profile(request, username):
+    user = get_object_or_404(User, username=username)
+    rate = Rating.objects.filter(user = user)
+    ratings = Rating.objects.all()
+    rating_status = None    
     if ratings is None:
         rating_status = False
     else:
@@ -50,11 +62,10 @@ def profile(request, username):
         'profile': profile,
         'rating_form': form,
         'rating_status': rating_status
-
     }
-    return render(request, 'profile/profile.html', params)
+    return render(request, 'profile/viewprofile.html', params)
     
-
+# UPDATE MECH'S PROFILE
 @login_required(login_url= '/accounts/login/')
 def update_profile(request, username):
     user = User.objects.get(username=username)
@@ -70,13 +81,22 @@ def update_profile(request, username):
             "profileform": profileform
     }
     return render(request, "profile/update_profile.html", context)
-
-def user_profile(request, username):
-    user_prof = get_object_or_404(User, username=username)
-    if request.user == user_prof:
-        return redirect('profile', username=request.user.username)
-    params = {
-        'user_prof': user_prof,
-    }
-    return render(request, 'userprofile.html', params)
  
+def contactView(request):
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            from_email = form.cleaned_data['from_email']
+            message = form.cleaned_data['message']
+            try:
+                send_mail(subject, message, from_email, ['admin@example.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return redirect('success')
+    return render(request, "contacts.html", {'form': form})
+
+def successView(request):
+    return HttpResponse('Success! Thank you for your message.')

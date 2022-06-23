@@ -1,8 +1,180 @@
-{%extends 'base.html'%} {%block content%}
-<p>at home</p>
-<p>{{request.user}}</p>
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+{% load bootstrap5 %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<div class="container-fluid">
+  <div class="section1">
+    <div class="container card1 mt-5 text-center">
+      <br><br>
+      <h3>MAKE YOUR CAR LAST LONGER</h3><br>
+      <p>We are committed to earning your trust by providing the expertise and value you respect <br>
+        We can help you with everything from an oil change to an engine change. <br>
+        We can handle any problem on both foreign and domestic vehicles.</p><br><br>
+    </div>
+  <br><br><br><br>
 
-<a name="" id="" class="btn btn-primary" href="/accounts/login/" role="button"
-  >SIGN UP</a
->
+  <div class="section1footer mt-5 container">
+    <div class="row row-cols-3">
+
+      <div class="card2">
+        <h5>ENGINE DIAGNOSTICS</h5>
+        <p>Our mechs come handy with Synthetic engine oils</p>
+      </div>
+
+      <div class="card3">
+        <h5>ENGINE DIAGNOSTICS</h5>
+        <p>Our mechs come handy with Synthetic engine oils</p>
+      </div>
+
+      <div class="card4">
+        <h5>ENGINE DIAGNOSTICS</h5>
+        <p>Our mechs come handy with Synthetic engine oils</p>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br><br><br>
+<div class="section2 container">
+  <div class="row">
+
+    <div class="col-md-6">
+      <h2>OUR MISSION</h2><br>
+      <p>We offer a full range of garage services to vehicle owners located in Kenya. All mechanic services are
+        performed
+        by highly qualified mechanics. We can handle any car problem.</p>
+      <small>Once you select the mechanic of your choice according to your location and type of car, we will dispatch a mechanic to your location
+        of choice. The
+        mechanic will arrive in a company van, equipped with all the tools and parts necessary to get the job
+        done. To ensure
+        that they show up with the correct parts, it’s important that you give accurate information about your
+        vehicle. For
+        example, providing your VIN (Vehicle Identification Number) can go a long way in helping the mechanic
+        secure the correct
+        parts.</small><br><br>
+
+        <input type="submit" value="Book a Mechanic" class="allbtn" />
+    </div>
+
+    <div class="col-md-6">
+      <img src="{% static 'images/home1.jpg' %}" alt="" width="800">
+    </div>
+    <br><br><br><br>
+  </div>
+  <div class="section3">
+    <!-- WHY CHOOSE US AREA START -->
+    <br><br><br>
+  <div class="y-us-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+          <div class="y-us-head">
+            <div class="y-us-title">
+              <h2>Why choose us</h2>
+              <p>We offer a full range of garage services to vehicle owners located in Kenya. </p>
+              <span class="y-us-title-border"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="y-us-content">
+            <div class="service-3">
+              <div class="service-box">
+                <div class="clearfix">
+                  <div class="iconset">
+                    <span class="glyphicon glyphicon-cog icon"></span>
+                  </div>
+                  <div class="y-us-content">
+                    <h4>safety first</h4>
+                    <p>All mechanic services are performed
+                    by highly qualified mechanics. We can handle any car problem.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="service-box">
+                <div class="clearfix">
+                  <div class="iconset">
+                    <span class="glyphicon glyphicon-cog icon"></span>
+                  </div>
+                  <div class="y-us-content">
+                    <h4>CLEAN SURFACE</h4>
+                    <p>Globally incubate standards compliant channels before scalable benefits. Quickly disseminate
+                      superior del</p>
+                  </div>
+                </div>
+              </div>
+              <div class="service-box">
+                <div class="clearfix">
+                  <div class="iconset">
+                    <span class="glyphicon glyphicon-cog icon"></span>
+                  </div>
+                  <div class="y-us-content">
+                    <h4>PROFESSIONAL</h4>
+                    <p>Globally incubate standards compliant channels before scalable benefits. Quickly disseminate
+                      superior del</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="why-choose-banner">
+            <img src="http://themeinnovation.com/demo2/html/build-up/img/home1/why-choose.jpg" alt="">
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="y-us-contentbox">
+            <div class="service-3">
+              <div class="service-box">
+                <div class="clearfix">
+                  <div class="iconset">
+                    <span class="glyphicon glyphicon-cog icon"></span>
+                  </div>
+                  <div class="y-us-content">
+                    <h4>sustainability</h4>
+                    <p>Globally incubate standards compliant channels before scalable benefits. Quickly disseminate
+                      superior del</p>
+                  </div>
+                </div>
+              </div>
+              <div class="service-box">
+                <div class="clearfix">
+                  <div class="iconset">
+                    <span class="glyphicon glyphicon-cog icon"></span>
+                  </div>
+                  <div class="y-us-content">
+                    <h4>MODERN PAINTING</h4>
+                    <p>Globally incubate standards compliant channels before scalable benefits. Quickly disseminate
+                      superior del</p>
+                  </div>
+                </div>
+              </div>
+              <div class="service-box">
+                <div class="clearfix">
+                  <div class="iconset">
+                    <span class="glyphicon glyphicon-cog icon"></span>
+                  </div>
+                  <div class="y-us-content">
+                    <h4>home decor</h4>
+                    <p>Globally incubate standards compliant channels before scalable benefits. Quickly disseminate
+                      superior del</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+    <!-- WHY CHOOSE US AREA END -->
+
+  </div>
+</div>
+</div>
+</div>
 {%endblock%}
