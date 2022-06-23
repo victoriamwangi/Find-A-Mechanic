@@ -1,21 +1,30 @@
-.section1{
-background: url("/static/images/contactsbg.jpg");
-height: 650px;
-background-size: cover;
-padding: 100px 0 0 0;
-font-size: small;
-font-weight: bold;
-color: white;
-}
+/* .section1 {
+    background: url("/media/slid2.jpg");
+    height: 650px;
+    background-size: cover;
+    padding: 100px 0 0 0;
+    font-size: small;
+    font-weight: bold;
+    color: white;
+} */
+
 .card1 {
     background-color: grey;
 }
-.card2{
+
+.card2 {
     background-color: grey;
 }
+
 .card3 {
     background-color: grey;
 }
+
 .card4 {
     background-color: grey;
+}
+
+.carousel {
+    height: 70vh;
+    object-fit: cover;
 }

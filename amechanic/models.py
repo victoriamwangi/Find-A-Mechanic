@@ -9,15 +9,24 @@ from django.dispatch import receiver
 # reviews
 #location
 class Location(models.Model):
-    name = models.CharField(max_length= 100)
+    location_name = models.CharField(max_length= 100)
     
     def save_location(self):
         return self.save()
     def delete_location(self):
         return self.delete()
+    @classmethod
+    def locations(self):
+        locals = Location.objects.all()
+        return locals
+    
+    @classmethod
+    def search_location(cls, search_term):
+        location = cls.objects.filter(location_name__icontains = search_term)
+        return location 
     
     def __str__(self):
-        return self.name
+        return self.location_name
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete= models.CASCADE, related_name= 'profile')
     username= models.CharField(max_length= 100, blank=True)
@@ -26,7 +35,7 @@ class Profile(models.Model):
     bio = models.CharField(max_length= 30, null=True, blank=True)
     first_name = models.CharField(max_length=40, null=True)
     second_name = models.CharField(max_length=40, null=True)
-    location = models.OneToOneField(Location, on_delete= models.CASCADE ,blank=True, null=True,)
+    location = models.ManyToManyField(Location)
     
     @receiver(post_save, sender=User,) 
     def create_profile(sender, instance, created, **kwargs, ):

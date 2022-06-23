@@ -1,5 +1,4 @@
 {%extends 'base.html'%}
-{%block title%}Awards-Site{%endblock title%}
 {% load static %}
 {% load bootstrap5 %}
 {% block content %}
@@ -25,7 +24,7 @@
     </div>
 
     <div class="row row-cols-3 pl-3 pr-3">
-        {% for post in post %}
+        {% for post in posts %}
     <div class="card ml-5 mr-5 mb-5 justify-content-around" style="width: 28rem;">
         <img src="{{post.image.url}}" class="card-img-top" alt="..."width="250px" height="250px">
         <div class="card-body"> 

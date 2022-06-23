@@ -12,7 +12,7 @@ urlpatterns = [
 
     path('profiles/<username>/profile/', views.show_profile, name='show_profile'),  
     path('profile/<username>/settings', views.update_profile, name='update_profile'),
-    path('viewprofile/<username>', views.view_profile, name='viewprofile'),    
+    path('viewprofile/<id>', views.view_profile, name='viewprofile'),    
 
     path('contact/', contactView, name='contact'),
 
@@ -23,6 +23,10 @@ urlpatterns = [
     path('mechposts/', views.view_post, name='mechpost'),
 
     path('mechs/', views.mechs, name='mechs'),
+    path('search', views.location_search, name='search'),
+    path('locals/', views.locals, name='locals'),
+    
+    
     
 ]
 if settings.DEBUG:

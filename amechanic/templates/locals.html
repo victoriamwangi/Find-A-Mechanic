@@ -1,0 +1,25 @@
+{%extends 'base.html'%}{%block content%}
+
+<div class="row">
+  <div class="col-lg-2"></div>
+
+  <div class="col-lg-6">
+    {% if locals%} {%for location in locals%}
+
+    <div class="profdetail">
+      <div class="texty">
+        <p>
+          <span>Username:</span>
+          {{location.location_name}}
+        </p>
+        {%endfor%} {% else %}
+        <h2 class="text-center">
+          Found 0 profiles for the search term {{message}}
+        </h2>
+        {% endif %}
+      </div>
+      <div class="col-lg-3"></div>
+    </div>
+    {%endblock%}
+  </div>
+</div>

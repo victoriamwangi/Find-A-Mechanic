@@ -1,0 +1,33 @@
+{%extends 'base.html'%}{%block content%}
+
+<div class="row">
+  <div class="col-lg-2"></div>
+
+  <div class="col-lg-6">
+    {% if location%} {%for location in locations%}
+
+    <div class="profdetail">
+      {% comment %}
+      <img
+        class="card-img-top profimg"
+        src="{{business.business_image.url}}"
+        alt="damn"
+      />
+      {% endcomment %}
+
+      <div class="texty">
+        <p>
+          <span>Username:</span>
+          {{location.name}}
+        </p>
+      </div>
+      {%endfor%} {% else %}
+      <h2 class="text-center">
+        Found 0 locations for the search term {{message}}
+      </h2>
+      {% endif %}
+    </div>
+    <div class="col-lg-3"></div>
+  </div>
+  {%endblock%}
+</div>

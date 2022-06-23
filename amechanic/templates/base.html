@@ -16,15 +16,9 @@
     {%endblock%}
   </head>
   <body>
-    {%include 'navbar.html' %}
-
-    {%block content%}
-  
-    {%endblock%} 
-    
-    {%include 'footer.html' %}
-
-    {%block scripts%}
+    {%include 'navbar.html' %} {%block content%} {%endblock%}
+    <p></p>
+    {%include 'footer.html' %} {%block scripts%}
 
     <script src="{% static 'js/script.js'%}"></script>
 

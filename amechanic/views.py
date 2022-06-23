@@ -27,7 +27,7 @@ def view_post(request):
             post = form.save(commit=False)
             post.owner = current_user
             post.save()
-        return redirect('home')
+        return redirect('mechs')
 
     else:
         form = PostForm()
@@ -37,10 +37,12 @@ def view_post(request):
 
 @login_required(login_url='/accounts/login/')
 def mechs(request):
-    post = Post.objects.all()
-    return render(request, 'mechs.html',{'post':post})
+    posts = Post.objects.all()
+    return render(request, 'mechs.html',{'posts':posts})
 
-
+def locals(request):
+    locals = Location.objects.all()
+    return render(request, 'locals.html', {"locals":locals})
 # VIEW A MECHANIC'S PROFILE-postdetails
 @login_required(login_url= '/accounts/login/')
 def view_profile(request, id):
@@ -108,3 +110,14 @@ def contactView(request):
 
 def successView(request):
     return HttpResponse('Success! Thank you for your message.')
+
+def location_search(request):
+    if 'location' in request.GET and request.GET["location"]:
+        search_term = request.GET.get('location')
+        searched_location = Location.search_location(search_term)
+        message = f'{search_term}'
+        return render(request, 'search.html', {"message": message, 'locations':searched_location})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html', {'message': message})
+    
