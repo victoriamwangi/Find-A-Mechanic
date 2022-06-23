@@ -38,8 +38,6 @@
                 {% if new_comment %}
                 {% for comment in comments %}
                 <div class="alert alert-success" role="alert">
-                    {{ comment.body | linebreaks }}
-                    {{ comment.created_on }}
                     Your comment is awaiting moderation
                 </div>
                 {% endfor %}
